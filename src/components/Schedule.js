@@ -4,7 +4,7 @@ import ScheduleRow from './ScheduleRow'
 
 const Schedule = () => {
   return (
-    <Container className="mt-5">
+    <Container>
       <Row className="day-row">
         <Col>
           <h5>

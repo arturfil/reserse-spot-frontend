@@ -1,0 +1,19 @@
+.reserve {
+  display: flex;
+
+  i {
+    margin-right: 10px;
+  }
+
+  .bi-check-circle-fill {
+    color: green;
+  }
+
+  .bi-x-circle-fill {
+    color: red;
+  }
+
+  p {
+    margin-right: 10px;
+  }
+}
