@@ -5,7 +5,7 @@ import DaysTable from "../components/DaysTable";
 import Schedule from "../components/Schedule";
 import GoogleLogin from 'react-google-login';
 
-const Home = () => {
+const HomeView = () => {
 
   useEffect(() => {
     console.log("HERE", process.env.REACT_APP_GOOGLE_CLIENT_ID)
@@ -38,4 +38,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomeView;

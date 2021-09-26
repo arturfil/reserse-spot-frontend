@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Schedule from "../components/Schedule";
 import { getSpotsApi } from "../services/spotApiService";
 
-const Reserve = () => {
+const ReserveView = () => {
   const [spots, setSpots] = useState([]);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const Reserve = () => {
         <i className="bi bi-x-circle-fill"></i>
       </div>
       <h2>Meetings : {spots.msg}</h2>
-      <Schedule />
+      {/* <Schedule /> */}
       {spots && spots.map(m => (
         <h3>{m.concept}</h3>
       ))}
@@ -32,4 +32,4 @@ const Reserve = () => {
   );
 };
 
-export default Reserve;
+export default ReserveView;
