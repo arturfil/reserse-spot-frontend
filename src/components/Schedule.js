@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
+import { MeetingContext } from '../context/MeetingContext'
 import ScheduleRow from './ScheduleRow'
 
-const Schedule = () => {
+const Schedule = ({props}) => {
+  const {days} = useContext(MeetingContext);
+
+  console.log(props)
+
   return (
     <Container>
+      <h2>Totals days in the month {days.days} </h2>
+      <h2>Current Day {days.today} </h2>
+      <h2>Monday {days.monday} </h2>
       <Row className="day-row">
         <Col>
           <h5>
@@ -19,13 +27,13 @@ const Schedule = () => {
         <Col>Saturday</Col>
         <Col>Sunday</Col>
       </Row>
-      <ScheduleRow time="9:00 - 10:00"/>
-      <ScheduleRow time="10:00 - 11:00"/>
-      <ScheduleRow time="11:00 - 12:00"/>
-      <ScheduleRow time="11:00 - 12:00"/>
-      <ScheduleRow time="12:00 - 1:00"/>
-      <ScheduleRow time="1:00 - 2:00"/>
-      <ScheduleRow time="2:00 - 3:00"/>
+      {props.map(m => (
+        <p key={m._id}>
+          {new Date(m.date).getDate()}
+          <br/>
+          {m.startTime}
+        </p>
+      ))}
     </Container>
   )
 }

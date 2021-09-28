@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
+import { AuthContext } from "../context/AuthContext";
+import CustomButton from './CustomButton';
 
 const NavBar = () => {
+  const { loggedIn } = useContext(AuthContext)
+
   return (
     <Navbar className="navbar">
       <Container>
-        <Navbar.Brand href="#home">Think Easy</Navbar.Brand>
+        <Navbar.Brand>
+          <Link to="/">
+            Think Easy
+          </Link>
+        </Navbar.Brand>
         <Navbar.Toggle />
         <Nav>
           <Nav.Item>
@@ -21,9 +29,15 @@ const NavBar = () => {
           </Nav.Item>
         </Nav>
         <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text>
-            Signed in as: <a href="#login">Mark Otto</a>
-          </Navbar.Text>
+          { loggedIn ? (
+            <Navbar.Text>
+              <CustomButton title="Log Out" func={() => console.log("test")}/>
+            </Navbar.Text>
+          ) : (
+            <Navbar.Text>
+              <Link to="/login">Log In</Link>
+            </Navbar.Text>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>

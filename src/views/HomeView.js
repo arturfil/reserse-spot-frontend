@@ -1,20 +1,10 @@
-import React, { Fragment, useEffect } from "react";
 import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import DaysTable from "../components/DaysTable";
-import Schedule from "../components/Schedule";
-import GoogleLogin from 'react-google-login';
+import { Link, useHistory } from "react-router-dom";
+import CustomButton from "../components/CustomButton";
 
 const HomeView = () => {
+  const history = useHistory()
 
-  useEffect(() => {
-    console.log("HERE", process.env.REACT_APP_GOOGLE_CLIENT_ID)
-  }, [])
-
-  const responseGoogle = (response) => {
-    console.log(response)
-  }
-  
   return (
     <div className="home">
       <div className="container">
@@ -23,15 +13,13 @@ const HomeView = () => {
         <Button className="reserve">
           <Link to="/reserve">Reserve Your Spot</Link>
         </Button>
-        <Button className="more" variant="light">
-          Google Sign In
-        </Button>
-        <GoogleLogin
-          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-          buttonText="Login with Google"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
-          cookiePolicy={'single_host_origin'}
+        {/* <Link to="/login" className="more btn btn-primary" variant="light">
+          Log In
+        </Link> */}
+        <CustomButton
+          func={() => history.push('/login')}
+          title="Log In"
+          btnStyles={{color: 'white', borderRadius: '3px'}}
         />
       </div>
     </div>

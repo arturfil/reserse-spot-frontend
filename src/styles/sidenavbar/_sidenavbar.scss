@@ -1,0 +1,16 @@
+.sidenavbar {
+  background-image: linear-gradient(90deg, rgb(119, 0, 255), rgb(106, 71, 231));
+  height: 100vh;
+  padding-top: 80px;
+  font-weight: bold;
+  font-size: 18px;
+
+  li {
+    list-style: none;
+  }
+  
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}

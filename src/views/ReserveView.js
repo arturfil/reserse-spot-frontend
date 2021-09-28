@@ -1,33 +1,52 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
+import { MeetingContext } from "../context/MeetingContext";
 import Schedule from "../components/Schedule";
-import { getSpotsApi } from "../services/spotApiService";
+import { Table } from "react-bootstrap";
+import MeetingCard from "../components/MeetingCard";
+import { AuthContext } from "../context/AuthContext";
 
 const ReserveView = () => {
-  const [spots, setSpots] = useState([]);
-
-  useEffect(() => {
-    getSpots();
-  }, [])
-
-  const getSpots = async () => {
-    const response = await getSpotsApi();
-    setSpots(response.data);
-  }
+  const { meetings } = useContext(MeetingContext);
+  const { user } = useContext(AuthContext);
 
   return (
     <div className="container mt-5">
-      <h2>Reserve a Spot</h2>
-      <div className="reserve">
-        <p>Available: </p>
-        <i className="bi bi-check-circle-fill"></i>
-        <p>Taken:</p>
-        <i className="bi bi-x-circle-fill"></i>
+      <h2>Reserve a Spot {user.name}</h2>
+      <div className="row">
+        <div className="col">
+          <h4>Filter By Day: </h4>
+        </div>
+        <div className="col">
+          <select>
+            <option disabled>Choose Week Day</option>
+            <option>Monday</option>
+            <option>Tuesday</option>
+            <option>Wednesday</option>
+            <option>Thursday</option>
+            <option>Friday</option>
+            <option>Saturday</option>
+            <option>Sunday</option>
+          </select>
+        </div>
+        <div className="col">
+          <h4>Filter By Time</h4>
+        </div>
+        <div className="col">
+          <input
+            className="form-control"
+            placeholder="Enter time"
+            type="text"
+            name="time"
+          />
+        </div>
       </div>
-      <h2>Meetings : {spots.msg}</h2>
-      {/* <Schedule /> */}
-      {spots && spots.map(m => (
-        <h3>{m.concept}</h3>
-      ))}
+      <div className="row mt-4">
+        {meetings.map((m) => (
+          <div key={m._id} className="col">
+            <MeetingCard meeting={m}/>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
